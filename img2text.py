@@ -5,8 +5,8 @@ import numpy as np
 from pathlib import Path
 
 class imageToText():
-    def __init__(self,image, width=120):
-        self.file = image
+    def __init__(self, image, width=120):
+        self.file = str(image)
         self.width = int(width)
         self.prepare_file()
         self.convert()
@@ -84,8 +84,8 @@ if __name__ == '__main__':
     """
 
     parser = argparse.ArgumentParser(description=text)
-    parser.add_argument("-i", "--image", help="set input image file",required=True)
-    parser.add_argument("-w", "--width", help="set out image width")
+    parser.add_argument("-i", "--image", help="set input image file. example: '/path/to/image.jpg'",required=True)
+    parser.add_argument("-w", "--width", help="set out image width (characters in row)")
     args = parser.parse_args()
     if args.image:
         print(text)
@@ -94,9 +94,9 @@ if __name__ == '__main__':
 
         if args.width:
             print("-----> Setting output width (characters in row): %s" % args.width)
-            img2text = imageToText(args.image,args.width)
+            img2text = imageToText(f,args.width)
         else:
-            print("-----> Setting output width to default 120 characters in a row.\nPlease, experement width '[-w], [--width]' arguments for best results")
-            img2text = imageToText(args.image)
+            print("-----> Setting output width to default 120 characters in a row.\n-----> {!} Please, experement width '[-w], [--width]' arguments for best results")
+            img2text = imageToText(f)
     else:
          parser.print_help()
