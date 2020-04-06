@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description=text)
     parser.add_argument("-i", "--image", help="set input image file. example: '/path/to/image.jpg'",required=True)
-    parser.add_argument("-w", "--width", help="set out image width (characters in row)")
+    parser.add_argument("-w", "--width", help="set output image width")
     args = parser.parse_args()
     if args.image:
         print(text)
@@ -93,10 +93,10 @@ if __name__ == '__main__':
         f = Path(args.image)
 
         if args.width:
-            print("-----> Setting output width (characters in row): %s" % args.width)
+            print("-----> Setting output width: %s" % args.width)
             img2text = imageToText(f,args.width)
         else:
-            print("-----> Setting output width to default 120 characters in a row.\n-----> {!} Please, experement width '[-w], [--width]' arguments for best results")
+            print("-----> Setting output width to default value.\n-----> {!} Please, experement width '[-w], [--width]' arguments for best results")
             img2text = imageToText(f)
     else:
          parser.print_help()
